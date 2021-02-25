@@ -72,7 +72,7 @@
   	 		if (itemExist(id,stocks) == false) {
 	  	 		var quantity = 1;
 			 	var subtotal = parseInt(quantity) * parseFloat($("#price").text().substring(1));
-			 	totalAmountDue += parseFloat(subtotal);
+				 totalAmountDue += parseFloat(subtotal);
 				$("#cart tbody").append(
 						'<tr>' +
 							'<input name="id" type="hidden" value="'+ id +'">' +
@@ -87,8 +87,8 @@
 				recount();
 				$("payment").val('');
 				$("change").val('');
-	  	 	}
-  	 	}
+			}
+		}
 		
 	})
 
@@ -328,9 +328,9 @@
 		for (i = 0; i < row; i++) {
 			var r = $("#cart tbody tr").eq(i).find('td');
 			var quantity = parseInt(r.eq(1).find('input').val());
-			var price = r.eq(3).text().substring(1).replace(',','');
+			var price = r.eq(3).text().substring(3).replace(',','');
 			var discount = parseInt(r.eq(2).find('input').val());
-			total += parseFloat(price) * quantity;
+			total += parseInt(price) * quantity;
 
 			discountAmount += isNaN(discount) == true ? 0 : discount ;
 			
@@ -339,7 +339,7 @@
 		totalAmountDue = total - discountAmount;
 		
 		$("#amount-discount").text(currency + totalDiscount.toFixed(2));
-		$("#amount-total").text("₱" + number_format(totalAmountDue.toFixed(2)));
+		$("#amount-total").text(currency + number_format(totalAmountDue.toFixed(2)));
 	}
 
  
